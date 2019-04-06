@@ -1,4 +1,5 @@
 let mapleader=";"	" 定义快捷键的前缀 <leader>
+" w !sudo tee >/dev/null % " 使用 sudo 保存没有权限的文件
 
 " 开启实时搜索功能
 set incsearch
@@ -10,7 +11,7 @@ set nocompatible
 set wildmenu
 
 set autoread          " 文件修改之后自动载入
-" set nowrap 			取消换行
+set nowrap 			" 取消换行
 " 有一个或以上大写字母时仍大小写敏感  
 set smartcase 
 " 显示成对匹配
@@ -46,16 +47,14 @@ syntax enable
 syntax on
 
 " 自适应不同语言的智能缩进
-"filetype indent on
+filetype indent on
 
 " 基于缩进或语法进行代码折叠
 " set foldmethod=indent
 set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
-set foldenable
+set nofoldenable
 filetype plugin indent on
-
-filetype plugin on
 filetype on
 
 nnoremap j gj
@@ -69,6 +68,7 @@ inoremap <A-d> <Esc>d$a
 inoremap <leader>u <Esc>d^I
 inoremap <leader>w <Esc>ldbi
 inoremap <leader>o <Esc>O
+imap <C-c> <plug>NERDCommenterInsert " 开启插入模式下注释，插入模式下 NerdCommenter 插件默认不启动
 
 " 让配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -321,10 +321,10 @@ let g:NERDToggleCheckAllLines = 1
 " <leader>cu 取消注释
 " 注释的时候自动加个空格, 强迫症必配
 let g:NERDSpaceDelims=1
-" <leader> cc  注释单行或者选中行
-" <leader> cm  多行注释
-" <leader> cu  解开注释
-" <leader> ci  在注释和取消注释之间切换
+" <leader>cc  注释单行或者选中行
+" <leader>cm  多行注释
+" <leader>cu  解开注释
+" <leader>ci  在注释和取消注释之间切换
 " －－－－－－－－－－－－－－－－－ NERDCOMMENTER CONFIG END   －－－－－－－－－－－－－－－－－
 
 " －－－－－－－－－－－－－－－－－ vim-multiple-cursors CONFIG END   －－－－－－－－－－－－－－－－－
