@@ -102,6 +102,9 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 " Plugin options
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
+" typescript 插件
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+
 " 配色方案
 Plug 'morhetz/gruvbox'
 
@@ -209,7 +212,7 @@ call plug#end()
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
 let g:ycm_show_diagnostics_ui = 0                  "关闭语法提示
-let g:ycm_global_ycm_extra_conf = '/opt/vim81/share/vim/ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
@@ -234,6 +237,7 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '>*'
+map <F12> :YcmCompleter GoTo<CR>
 " －－－－－－－－－－－－－－－－－ YCM CONFIG END   －－－－－－－－－－－－－－－－－
 
 " 正确设置vimrc，读取tags（当前目录，否则向上级目录查找添加 .tags）
