@@ -10,7 +10,7 @@ set nocompatible
 set wildmenu
 
 set autoread          " 文件修改之后自动载入
-set nowrap 			" 取消换行
+" set nowrap 			取消换行
 " 有一个或以上大写字母时仍大小写敏感  
 set smartcase 
 " 显示成对匹配
