@@ -29,10 +29,13 @@ set number
 set hlsearch
 
 " 右下角显示命令
-set showcmd 
+set showcmd
 
 " 左下角显示当前模式
 set showmode
+
+" 设置鼠标可用
+set mouse=a
 
 " table 键长度
 set tabstop=4
@@ -69,6 +72,15 @@ inoremap <leader>u <Esc>d^I
 inoremap <leader>w <Esc>ldbi
 inoremap <leader>o <Esc>O
 imap <C-c> <plug>NERDCommenterInsert " 开启插入模式下注释，插入模式下 NerdCommenter 插件默认不启动
+" 先查看系统是否支持 clipboard， vim --version | grep clipboard 可以查看是否支持，如果不支持，前面为减号
+" 如果不支持复制到系统剪贴板可以通过安装 vim-scripts vim-gtk vim-gnome 几个包来使用
+" 或着 set mouse=a 然后通过按住 Shift 键，再用鼠标选中字符进行复制
+" NerdCommenter 插件默认不启动 
+" 设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y "+y
+" 设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <Leader>p "+p
+
 
 " 让配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -257,13 +269,17 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 map <leader>n :NERDTreeToggle<CR>
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 显示隐藏文件
+let NERDTreeShowHidden=0
 " －－－－－－－－－－－－－－－－－ NERDTREE CONFIG END   －－－－－－－－－－－－－－－－－
 
 " －－－－－－－－－－－－－－－－－ TAGBAR CONFIG END   －－－－－－－－－－－－－－－－－
-let g:tagbar_width=35
-let g:tagbar_autofocus=1
-let g:tagbar_left = 1
 nmap <leader>t :TagbarToggle<CR>
+let g:tagbar_ctags_bin = 'ctags'          			" ctags程序的路径
+let g:tagbar_right = 1 								" 让tagbar在页面左侧显示，默认右边
+let g:tagbar_width = 30								" 设置tagbar的宽度为30列，默认40
+let g:tagbar_autofocus = 1							" 这是tagbar一打开，光标即在tagbar页面内，默认在vim打开的文件内
+let g:tagbar_sort = 0								" 设置标签不排序，默认排序
 " －－－－－－－－－－－－－－－－－ TAGBAR CONFIG END   －－－－－－－－－－－－－－－－－
 
 " －－－－－－－－－－－－－－－－－ CTRLP CONFIG END   －－－－－－－－－－－－－－－－－
