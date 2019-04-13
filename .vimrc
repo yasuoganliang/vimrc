@@ -71,7 +71,6 @@ inoremap <leader>u <Esc>d^I
 inoremap <leader>w <Esc>ldbi
 inoremap <leader>o <Esc>O
 imap <C-c> <plug>NERDCommenterInsert " 开启插入模式下注释，插入模式下 NerdCommenter 插件默认不启动
-imap <C-c> <plug>NERDCommenterInsert " 开启插入模式下注释，插入模式下 NerdCommenter 插件默认不启动
 " 先查看系统是否支持 clipboard， vim --version | grep clipboard 可以查看是否支持，如果不支持，前面为减号
 " 如果不支持复制到系统剪贴板可以通过安装 vim-scripts vim-gtk vim-gnome 几个包来使用
 " 或着 set mouse=a 然后通过按住 Shift 键，再用鼠标选中字符进行复制
@@ -242,13 +241,9 @@ let g:ycm_warning_symbol = '⚠'
 nmap <F6> :YcmDiags
 set tags+=/usr/include/c++/4.8.5/stdcpp.tags
 let OmniCpp_DefaultNamespaces = ["_GLIBCXX_STD"]
-let mapleader=";"
-let maplocalleader=";"
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '>*'
 map <F12> :YcmCompleter GoTo<CR>
 " －－－－－－－－－－－－－－－－－ YCM CONFIG END   －－－－－－－－－－－－－－－－－
 
