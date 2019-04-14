@@ -82,7 +82,7 @@ nmap <Leader>p "+p
 
 
 " 让配置变更立即生效
-autocmd BufWritePost $HOME source %
+autocmd BufWritePost $HOME/.vimrc source %
 
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
@@ -92,19 +92,25 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" 对齐插件
 Plug 'junegunn/vim-easy-align'
 
-" Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
 " Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' " 代码片段
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
-" Using a non-master branch
+" 快速注释工具
+Plug 'scrooloose/nerdcommenter'
+
+" 代码补齐
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang --go-completer  --js-completer --rust-completer --ts-completer' }
+
+
+" Using a non-master branch, 生成 ycm 插件配置文件
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
@@ -113,14 +119,11 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 " Plugin options
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
-" typescript 插件
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" 新的补全插件
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " 配色方案
 Plug 'morhetz/gruvbox'
-
-" 代码补齐
-Plug 'Valloric/YouCompleteMe'
 
 " 浏览taglist
 Plug 'majutsushi/tagbar'
@@ -129,41 +132,23 @@ Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 
 " CtrlP插件，类似go to definition的功能
-Plug 'tacahiroy/ctrlp-funky'
+" Plug 'tacahiroy/ctrlp-funky'
 " <leader>fu
 
 " CtrlP插件，提供sublime类似的grep搜索
-Plug 'dyng/ctrlsf.vim'
+" Plug 'dyng/ctrlsf.vim'
 
 " 提供快速grep功能
 Plug 'rking/ag.vim'
-
-" 模糊查找的功能
-Plug 'ggVGc/vim-fuzzysearch'
 
 " 状态栏，buffer栏美化
 Plug 'bling/vim-airline'
 
 " 高亮显示文档中颜色代码
-Plug 'gorodinskiy/vim-coloresque'
-
-" 高亮显示匹配的标签
-Plug 'Valloric/MatchTagAlways'
-
-" 跳转到任意位置
-Plug 'Lokaltog/vim-easymotion'
-
-" 快速匹配() [] {} 等
-Plug 'vim-scripts/matchit.zip'
+" Plug 'gorodinskiy/vim-coloresque'
 
 " 自动关闭html, xml标签
 Plug 'alvan/vim-closetag'
-
-" 代码片段工具 <C-\> 触发
-Plug 'SirVer/ultisnips'
-
-"快速注释工具
-Plug 'scrooloose/nerdcommenter'
 
 " 快速给单词添加 单引号，双引号，中括号等
 Plug 'tpope/vim-surround'
@@ -171,8 +156,6 @@ Plug 'tpope/vim-surround'
 " cs"'  cs 替换符号，将双引号替换为单引号
 " ds" ds 删除符号，删除双引号
 
-" 自动补全：(), [], {}, <>
-" Plug 'Raimondi/delimitMate'
 " 自动补全括号的插件，包括小括号，中括号，以及花括号
 Plug 'jiangmiao/auto-pairs'
 
@@ -180,13 +163,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 
 " 快速书写html
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
-" 语法检查插件，写javascript配合eslint使用非常有帮助 
+" 语法检查插件
 Plug 'scrooloose/syntastic'
 
 " css3语法高亮
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 
 " markdown语法高亮
 Plug 'tpope/vim-markdown'
@@ -195,23 +178,18 @@ Plug 'tpope/vim-markdown'
 Plug 'suan/vim-instant-markdown'
 
 " JS语法高亮
-Plug 'pangloss/vim-javascript'
-Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'leafgarland/typescript-vim'
 
 " git整合
 Plug 'tpope/vim-fugitive'
 
-" 快速跳转到变量/函数定义的地方
-Plug 'ternjs/tern_for_vim'
-
-" 让Ctrl+F,Ctrl+B的滚屏来得更顺滑一些
+" Ctrl + F, Ctrl + B 滚屏
 Plug 'yonchu/accelerated-smooth-scroll'
 
-" 自动补全插件
-Plug 'Shougo/neocomplete.vim'
-
 " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
@@ -220,14 +198,15 @@ Plug 'Shougo/neocomplete.vim'
 call plug#end()
 
 " －－－－－－－－－－－－－－－－－ YCM CONFIG BEGIN －－－－－－－－－－－－－－－－－
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+set completeopt=longest,menu    " 补全菜单
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
 let g:ycm_show_diagnostics_ui = 0                  "关闭语法提示
-let g:ycm_global_ycm_extra_conf = '.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/yujinsheng/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
 let g:ycm_min_num_of_chars_for_completion=1 " 从第2个键入字符就开始罗列匹配项
+let g:ycm_max_num_candidates = 10 " 设置语义补全的最大候选项数量
 let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=0    " 语法关键字补全
 let g:ycm_complete_in_comments = 0   "在注释输入中也能补全
@@ -238,17 +217,20 @@ let g:ycm_keep_logfiles = 1
 let g:ycm_log_level = 'debug' "同时，YCM可以打开location-list来显示警告和错误的信息:YcmDiags
 let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚠'
+" 回车选中补全
+let g:ycm_key_list_stop_completion = ['<CR>']
 nmap <F6> :YcmDiags
-set tags+=/usr/include/c++/4.8.5/stdcpp.tags
-let OmniCpp_DefaultNamespaces = ["_GLIBCXX_STD"]
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <F12> :YcmCompleter GoTo<CR>
+let g:ycm_key_invoke_completion = '<c-z>'
+noremap <c-z> <NOP>
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript,typescript': ['re!\w{2}'],
+			\ }
 " －－－－－－－－－－－－－－－－－ YCM CONFIG END   －－－－－－－－－－－－－－－－－
-
-" 正确设置vimrc，读取tags（当前目录，否则向上级目录查找添加 .tags）
-set tags=./.tags;,.tags
 
 " －－－－－－－－－－－－－－－－－ NERDTree CONFIG END   －－－－－－－－－－－－－－－－－
 " NERDTree config
@@ -264,6 +246,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 map <leader>n :NERDTreeToggle<CR>
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 显示隐藏文件，也可以不配置这项，在目录树按 Shift + i 显示隐藏文件
+let NERDTreeShowHidden=1
 " －－－－－－－－－－－－－－－－－ NERDTREE CONFIG END   －－－－－－－－－－－－－－－－－
 
 " －－－－－－－－－－－－－－－－－ TAGBAR CONFIG END   －－－－－－－－－－－－－－－－－
@@ -273,7 +257,7 @@ let g:tagbar_right = 1 								" 让tagbar在页面左侧显示，默认右边
 let g:tagbar_width = 30								" 设置tagbar的宽度为30列，默认40
 let g:tagbar_autofocus = 1							" 这是tagbar一打开，光标即在tagbar页面内，默认在vim打开的文件内
 let g:tagbar_sort = 0								" 设置标签不排序，默认排序
-
+set tags+=/usr/include/c++/4.8.5/stdcpp.tags
 " let g:tagbar_width=35
 " let g:tagbar_autofocus=1
 " let g:tagbar_right = 1
@@ -283,7 +267,6 @@ let g:tagbar_sort = 0								" 设置标签不排序，默认排序
 " －－－－－－－－－－－－－－－－－ CTRLP CONFIG END   －－－－－－－－－－－－－－－－－
 let g:ctrlp_map = '<leader>ff'
 let g:ctrlp_cmd = 'CtrlP'
-" 相当于mru功能，show recently opened files
 map <leader>fp :CtrlPMRU<CR>
 "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
 let g:ctrlp_custom_ignore = {
@@ -308,7 +291,7 @@ if executable('ag')
 endif
 " －－－－－－－－－－－－－－－－－ CTRLP CONFIG END   －－－－－－－－－－－－－－－－－
 
-" －－－－－－－－－－－－－－－－－ CTRLP CONFIG END   －－－－－－－－－－－－－－－－－
+" －－－－－－－－－－－－－－－－－ NerdCommenter CONFIG END   －－－－－－－－－－－－－－－－－
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -332,12 +315,10 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
-" －－－－－－－－－－－－－－－－－ CTRLP CONFIG END   －－－－－－－－－－－－－－－－－
+" －－－－－－－－－－－－－－－－－ NerdCommenter CONFIG END   －－－－－－－－－－－－－－－－－
 
 " －－－－－－－－－－－－－－－－－ NERDCOMMENTER CONFIG END   －－－－－－－－－－－－－－－－－
-" <leader>cc 加注释 默认快捷键
-" <leader>cu 取消注释
-" 注释的时候自动加个空格, 强迫症必配
+" 注释的时候自动加个空格
 let g:NERDSpaceDelims=1
 " <leader>cc  注释单行或者选中行
 " <leader>cm  多行注释
@@ -355,6 +336,6 @@ let g:NERDSpaceDelims=1
 " －－－－－－－－－－－－－－－－－ gruvbox 主题 CONFIG END   －－－－－－－－－－－－－－－－－
 set bg=dark "设置背景为黑色
 colorscheme gruvbox "设置主题为 gruvbox
-set guioptions=  "去掉两边的scrollbar
+" set guioptions=  "去掉两边的scrollbar
 set guifont=Monaco:h17 "设置字体和字的大小
 " －－－－－－－－－－－－－－－－－ gruvbox 主题 CONFIG END   －－－－－－－－－－－－－－－－－
