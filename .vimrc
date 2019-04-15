@@ -224,12 +224,20 @@ nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <F12> :YcmCompleter GoTo<CR>
-let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_key_invoke_completion = '<c-z>' " 触发语义补全，默认快捷键为 <c-space>
 noremap <c-z> <NOP>
 let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript,typescript': ['re!\w{2}'],
-			\ }
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript,typescript': ['re!\w{2}'],
+            \ }
+" YouCompleteMe 补全框颜色
+highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
+highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
+" 关闭错误提示
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_open_loclist_on_ycm_diags = 0
+let g:ycm_add_preview_to_completeopt = 0
 " －－－－－－－－－－－－－－－－－ YCM CONFIG END   －－－－－－－－－－－－－－－－－
 
 " －－－－－－－－－－－－－－－－－ NERDTree CONFIG END   －－－－－－－－－－－－－－－－－
